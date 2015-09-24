@@ -21,7 +21,7 @@ describe Container do
 	  @container = Container.new(10, "pitcher")
 	end
 	  
-    it "from infinite source" do
+    describe "from infinite source" do
 	  expect(@container.fill).to eq(10)
 	end
 
@@ -37,6 +37,25 @@ describe Container do
       	another.fill
       	expect(@container.fill_from(another)).to eq(5)
       end
+	end
+  end
+
+  describe "can be emptied" do
+  	before :each do
+	  @container = Container.new(10, "pitcher")
+	  @container.fill
+	  @glass = Container.new(1, "glass")
+	  @bathtub = Container.new(100, "bathtub")
+	end
+
+	it "to a smaller container" do
+	  @glass.fill_from @container
+	  expect(@container.volume).to eq(9)
+	end
+
+	it "to a larger container" do
+	  @bathtub.fill_from @container
+	  expect(@container).to be_empty
 	end
   end
 end
