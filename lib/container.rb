@@ -1,9 +1,13 @@
 class Container
-  def initialize (volume, name = "container")
-    raise ArgumentError.new("Volume must be greater than zero") unless volume > 0
-    @volume = volume
+  def initialize (capacity, name = "container")
+    raise ArgumentError.new("capacity must be greater than zero") unless capacity > 0
+    @capacity = capacity
     @name = name
-    @contained_volume = 0
+    @volume = 0
+  end
+
+  def capacity
+    @capacity
   end
 
   def volume
@@ -12,5 +16,18 @@ class Container
 
   def name
     @name
+  end
+
+  def fill
+    @volume = @capacity
+  end
+
+  def fill_from (container)
+    if @capacity - @volume > container.volume
+      @volume += container.volume
+    else
+      @volume = @capacity
+    end
+    @volume
   end
 end
