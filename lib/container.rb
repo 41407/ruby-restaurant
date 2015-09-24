@@ -14,6 +14,10 @@ class Container
     @volume
   end
 
+  def weight
+    @volume
+  end
+
   def empty?
     @volume == 0
   end
