@@ -14,6 +14,10 @@ class Container
     @volume
   end
 
+  def empty?
+    @volume == 0
+  end
+
   def name
     @name
   end
@@ -22,12 +26,26 @@ class Container
     @volume = @capacity
   end
 
+  def empty
+    @volume = 0
+  end
+
+  def take (amount)
+    @volume -= amount
+  end
+
   def fill_from (container)
     if @capacity - @volume > container.volume
       @volume += container.volume
+      container.empty
     else
+      container.take(@capacity - @volume)
       @volume = @capacity
     end
     @volume
+  end
+
+  def to_s
+    @name + ": " + @volume.to_s + "/" + @capacity.to_s
   end
 end

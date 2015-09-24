@@ -21,7 +21,7 @@ describe Container do
 	  @container = Container.new(10, "pitcher")
 	end
 	  
-    describe "from infinite source" do
+    it "from infinite source" do
 	  expect(@container.fill).to eq(10)
 	end
 
