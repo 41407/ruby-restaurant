@@ -31,18 +31,17 @@ class Container
   end
 
   def take (amount)
-    @volume -= amount
+    if(amount < @volume)
+      @volume -= amount
+      amount 
+    else
+      @volume = 0
+      @capacity
+    end
   end
 
   def fill_from (container)
-    if @capacity - @volume > container.volume
-      @volume += container.volume
-      container.empty
-    else
-      container.take(@capacity - @volume)
-      @volume = @capacity
-    end
-    @volume
+    @volume += container.take(@capacity - @volume)
   end
 
   def to_s
