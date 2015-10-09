@@ -9,11 +9,11 @@ describe Glass do
   end
 
   it "should not have negative capacity" do
-    expect(Glass.new(-1)).to raise_error ArgumentError
+    expect{Glass.new(-1)}.to raise_error ArgumentError
   end
 
   it "should not have negative weight" do
-    expect(Glass.new(3, -2, "weird")).to raise_error ArgumentError
+    expect{Glass.new(3, -2, "weird")}.to raise_error ArgumentError
   end
 
   it "when full should return correct weight" do
